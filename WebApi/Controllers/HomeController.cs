@@ -16,8 +16,6 @@ namespace WebApi.Controllers
 
         public IActionResult Index()
         {
-            var a = Engine.Translate("he");
-
             return View();
         }
 
