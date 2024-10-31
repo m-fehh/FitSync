@@ -33,7 +33,18 @@
             flex-direction: column;
             padding-top: 20px;
             transition: width 0.3s;
+            overflow-y: auto;
         }
+
+            /* Estilizando a barra de rolagem para ficar invisível */
+            .sidebar::-webkit-scrollbar {
+                width: 0; 
+                background: transparent; 
+            }
+
+            .sidebar::-webkit-scrollbar-thumb {
+                background: transparent;
+            }
 
             .sidebar.collapsed {
                 width: 60px;
