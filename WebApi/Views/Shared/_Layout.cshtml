@@ -95,6 +95,10 @@
                 font-weight: 700;
             }
 
+            .sidebar a.active i {
+                    background-color: var(--bs-gray-100);
+            }
+
             .sidebar a.active,
             .sidebar a:hover {
                 background-color: var(--secondary-color);
@@ -190,6 +194,12 @@
             .logout-btn i {
                 color: var(--main-color);
             }
+
+            .logout-btn:hover {
+                background-color: var(--main-color) !important;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            }
+
 
         .sidebar:not(.collapsed) .logout-btn {
             justify-content: center;
@@ -348,7 +358,7 @@
         <a href="#"><i class="fa-solid fa-square-pen"></i><span> Posts</span></a>
         <a href="#"><i class="fa-solid fa-image"></i><span> Media</span></a>
         <a href="#"><i class="fa-solid fa-table-columns"></i><span> Pages</span></a>
-        <a href="#" onclick="toggleSubmenu(event, 'comments-submenu')"><i class="fa-solid fa-message"></i><span> Comments <span class="badge bg-primary ms-2">1</span></span></a>
+        <a href="#" onclick="toggleSubmenu(event, 'comments-submenu')"><i class="fa-solid fa-message"></i><span> Comments</span></a>
         <div class="submenu" id="comments-submenu">
             <h4>Comments</h4>
             <a href="#">Pending</a>
@@ -397,6 +407,13 @@
             const toggleButtonIcon = document.querySelector('.toggle-button i');
             const submenus = document.querySelectorAll('.submenu');
 
+            // Fecha todos os submenus
+            submenus.forEach(submenu => {
+                submenu.style.display = 'none';
+                submenu.classList.remove('expanded'); // Remove a classe expanded
+                submenu.classList.add('collapsed'); // Adiciona a classe collapsed
+            });
+
             sidebar.classList.toggle('collapsed');
             content.classList.toggle('expanded');
             header.classList.toggle('collapsed'); // Adiciona/remova a classe collapsed no header
@@ -408,10 +425,6 @@
                 toggleButtonIcon.classList.remove('fa-angle-right');
                 toggleButtonIcon.classList.add('fa-angle-left');
             }
-
-            submenus.forEach(submenu => {
-                submenu.style.display = 'none';
-            });
         }
 
 
