@@ -66,32 +66,8 @@
 
         .sidebar.collapsed .icon img {
             width: 35px;
+            margin-bottom: 70px;
         }
-
-        .toggle-button {
-            position: absolute;
-            top: 45px;
-            right: -10px;
-            width: 20px;
-            height: 20px;
-            background-color: var(--main-color);
-            border: none;
-            color: white;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: transform 0.3s;
-        }
-
-            .toggle-button i {
-                font-size: 12px;
-            }
-
-            .toggle-button:hover {
-                transform: scale(1.1);
-            }
 
         .sidebar a {
             padding: 12px 20px;
@@ -246,6 +222,105 @@
             color: var(--text-primary);
             margin-bottom: 20px;
         }
+
+
+
+
+
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 10px; /* Aumenta o espaço do topo */
+            left: 270px;
+            right: 20px;
+            height: 50px;
+            background-color: var(--sidebar-background);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            border-radius: 12px; /* Borda arredondada semelhante ao footer */
+            color: var(--text-secundary);
+            border: 1px solid var(--border);
+            transition: left 0.3s;
+            z-index: 1000;
+        }
+
+            .header.collapsed {
+                left: 80px; /* Posiciona o header quando a sidebar está colapsada */
+            }
+
+
+            .header .header-left {
+                display: flex;
+                align-items: center;
+                gap: 15px;
+            }
+
+            .header .menu-toggle {
+                background: none;
+                border: none;
+                color: var(--main-color);
+                font-size: 20px;
+                cursor: pointer;
+            }
+
+            .header .header-title {
+                font-size: 16px;
+                font-weight: bold;
+                color: var(--text-primary);
+                margin: 0;
+            }
+
+            .header .header-right {
+                display: flex;
+                align-items: center;
+                gap: 20px;
+            }
+
+/*             .header .search-bar {
+                padding: 5px 10px;
+                border: 1px solid var(--border);
+                border-radius: 4px;
+                font-size: 14px;
+            }
+
+            .header .notification-btn {
+                background: none;
+                border: none;
+                color: var(--text-primary);
+                font-size: 18px;
+                cursor: pointer;
+                position: relative;
+            }
+ */
+            .header .user-info {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+
+/*             .header .user-avatar {
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+            } */
+
+            .header .user-name {
+                font-size: 14px;
+                color: var(--text-primary);
+            }
+
+        .content {
+            margin-top: 80px; /* Ajusta o margin-top para evitar sobreposição do header */
+        }
+
+            .content.expanded + .header {
+                left: 60px;
+            }
+
+
     </style>
 </head>
 <body>
@@ -253,7 +328,6 @@
     <div class="sidebar" id="sidebar">
         <div class="icon">
             <img src="images/logo-light.svg" alt="Logo">
-            <button class="toggle-button" onclick="toggleSidebar()"><i class="fas fa-angle-left"></i></button>
         </div>
 
         <h3>Dashboard</h3>
@@ -275,6 +349,23 @@
         <a href="#" class="logout-btn"><i class="fas fa-right-from-bracket"></i><span> Logout</span></a>
     </div>
 
+    <header class="header">
+        <div class="header-left">
+            <button class="menu-toggle" onclick="toggleSidebar()">
+                <i class="fas fa-bars"></i>
+            </button>
+            <h1 class="header-title">Dashboard</h1>
+        </div>
+        <div class="header-right">
+@*             <input type="text" class="search-bar" placeholder="Search...">
+            <button class="notification-btn"><i class="fas fa-bell"></i></button> *@
+            <div class="user-info">
+                @* <img src="images/user-avatar.jpg" alt="User Avatar" class="user-avatar"> *@
+                <span class="user-name">Username</span>
+            </div>
+        </div>
+    </header>
+
     <div class="content" id="content">
         <h2 class="dashboard-header">Dashboard</h2>
         @RenderBody()
@@ -289,11 +380,13 @@
         function toggleSidebar() {
             const sidebar = document.getElementById('sidebar');
             const content = document.getElementById('content');
+            const header = document.querySelector('.header'); // Seleciona o header
             const toggleButtonIcon = document.querySelector('.toggle-button i');
             const submenus = document.querySelectorAll('.submenu');
 
             sidebar.classList.toggle('collapsed');
             content.classList.toggle('expanded');
+            header.classList.toggle('collapsed'); // Adiciona/remova a classe collapsed no header
 
             if (sidebar.classList.contains('collapsed')) {
                 toggleButtonIcon.classList.remove('fa-angle-left');
@@ -307,6 +400,8 @@
                 submenu.style.display = 'none';
             });
         }
+
+
 
         function toggleSubmenu(event, id) {
             const submenu = document.getElementById(id);
