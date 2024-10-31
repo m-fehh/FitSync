@@ -1,274 +1,4 @@
-﻿@* <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Cummo</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f5f7fa;
-            color: #333;
-        }
-
-        .sidebar {
-            height: 100vh;
-            width: 250px;
-            position: fixed;
-            top: 0;
-            left: 0;
-            background-color: #ffffff;
-            border-right: 1px solid #e0e0e0;
-            display: flex;
-            flex-direction: column;
-            padding-top: 20px;
-            transition: width 0.3s;
-        }
-
-            .sidebar.collapsed {
-                width: 60px;
-            }
-
-        .icon {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 30px;
-            position: relative;
-        }
-
-            .icon img {
-                width: 50px;
-                height: auto;
-            }
-
-        .toggle-button {
-            position: absolute;
-            top: 20px;
-            right: -25px;
-            background-color: #1a73e8;
-            border: none;
-            color: white;
-            padding: 5px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .sidebar h3 {
-            text-align: center;
-            color: #4a4a4a;
-            font-size: 20px;
-            margin-bottom: 30px;
-        }
-
-        .sidebar a {
-            padding: 12px 20px;
-            font-size: 16px;
-            color: #333;
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-            transition: background-color 0.3s, color 0.3s;
-            margin-bottom: 10px;
-            border-radius: 12px;
-            gap: 8px;
-        
-        }
-
-            .sidebar a.active, .sidebar a:hover {
-                background-color: #e0efff;
-                color: #1a73e8;
-                margin: 0px 10px 10px;
-                padding: 12px 10px;
-            }
-
-        .sidebar.collapsed a {
-            margin: 7px 0;
-            border-radius: 0;
-        }
-
-            .sidebar.collapsed a.active, .sidebar.collapsed a:hover {
-                background-color: #e0efff;
-                color: #1a73e8;
-                padding: 12px 20px;
-            }
-
-            .submenu.collapsed h3,  
-            .sidebar.collapsed a span {
-                display: none;
-            }
-
-        .submenu {
-            display: none;
-            padding-left: 20px;
-            margin-top: 0;
-            position: absolute;
-            z-index: 1000;
-        }
-
-            .submenu.collapsed {
-                background-color: #ffffff;
-                border: 1px solid #e0e0e0;
-                padding: 0 !important;
-                width: 200px;
-            }
-
-
-
-            .submenu h4 {
-                margin: 0 0 10px;
-                font-size: 16px;
-                color: #1a73e8;
-                font-weight: bold;
-                text-align: center;
-                padding: 5px 0;
-                border-bottom: 2px solid #e0e0e0;
-                display: none;
-            }
-
-            .submenu.collapsed h4 {
-                display: block;
-            }
-
-            .submenu a {
-                font-size: 14px;
-                padding: 10px 15px;
-                display: block;
-                color: #333;
-                text-decoration: none;
-            }
-
-                .submenu a:hover {
-                    background-color: #e0efff;
-                }
-
-        .logout-btn {
-            margin: 20px;
-            background-color: #1a73e8;
-            color: white !important;
-            font-size: 16px;
-            padding: 10px;
-            border-radius: 5px;
-            text-align: center;
-            text-decoration: none;
-            margin-top: auto;
-            position: absolute; /* Para manter o botão fixo na parte inferior */
-            bottom: 20px; /* Distância do fundo */
-            left: 0; /* Alinhar à esquerda */
-            right: 0; /* Alinhar à direita */
-        }
-
-        .content {
-            margin-left: 250px;
-            padding: 20px;
-            transition: margin-left 0.3s;
-        }
-
-            .content.expanded {
-                margin-left: 60px;
-            }
-
-        .dashboard-header {
-            font-size: 24px;
-            font-weight: bold;
-            color: #333;
-            margin-bottom: 20px;
-        }
-    </style>
-</head>
-<body>
-
-    <div class="sidebar" id="sidebar">
-        <div class="icon">
-            <img src="images/logo-light.svg" alt="Logo">
-            <button class="toggle-button" onclick="toggleSidebar()"><i class="fas fa-angle-left"></i></button>
-        </div>
-
-        <h3>Dashboard</h3>
-        <a href="#" class="active"><i class="fas fa-tachometer-alt"></i><span> Dashboard</span></a>
-        <a href="#"><i class="fas fa-pencil-alt"></i><span> Posts</span></a>
-        <a href="#"><i class="fas fa-images"></i><span> Media</span></a>
-        <a href="#"><i class="fas fa-file-alt"></i><span> Pages</span></a>
-        <a href="#" onclick="toggleSubmenu(event, 'comments-submenu', 'Comments')"><i class="fas fa-comments"></i><span> Comments <span class="badge bg-primary ms-2">1</span></span></a>
-        <div class="submenu" id="comments-submenu">
-            <h4>Comments</h4>
-            <a href="#">Pending</a>
-            <a href="#">Approved</a>
-        </div>
-        <a href="#"><i class="fas fa-paint-brush"></i><span> Appearance</span></a>
-        <a href="#"><i class="fas fa-plug"></i><span> Plugins</span></a>
-        <a href="#"><i class="fa-solid fa-user"></i><span> Users</span></a>
-        <a href="#"><i class="fas fa-cog"></i><span> Settings</span></a>
-        <a href="#"><i class="fas fa-tools"></i><span> Tools</span></a>
-        <a href="#" class="logout-btn"><i class="fas fa-right-from-bracket"></i><span> Logout</span></a>
-    </div>
-
-    <div class="content" id="content">
-        <h2 class="dashboard-header">Dashboard</h2>
-        @RenderBody()
-    </div>
-
-    <script>
-        function toggleSubmenu(event, id, title) {
-            const submenu = document.getElementById(id);
-            submenu.classList.toggle('collapsed');
-            submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
-
-            const allSubmenus = document.querySelectorAll('.submenu');
-            allSubmenus.forEach(function (item) {
-                if (item.id !== id) {
-                    item.style.display = 'none';
-                    item.classList.remove('collapsed');
-                }
-            });
-
-            const sidebar = document.getElementById('sidebar');
-            if (sidebar.classList.contains('collapsed')) {
-                submenu.style.position = 'absolute';
-                submenu.style.left = (sidebar.offsetWidth) + 'px';
-                submenu.style.top = event.target.getBoundingClientRect().top + 'px';
-                submenu.classList.add('collapsed');
-            } else {
-                submenu.style.position = 'static';
-                submenu.classList.remove('collapsed');
-            }
-        }
-
-        function toggleSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            const content = document.getElementById('content');
-
-            sidebar.classList.toggle('collapsed');
-            content.classList.toggle('expanded');
-
-            const allSubmenus = document.querySelectorAll('.submenu');
-            allSubmenus.forEach(function (item) {
-                item.style.display = 'none';
-                item.classList.remove('collapsed');
-            });
-        }
-
-        document.addEventListener('DOMContentLoaded', function () {
-            const currentPage = window.location.pathname.split("/").pop();
-            const menuLinks = document.querySelectorAll('.sidebar a');
-
-            menuLinks.forEach(link => {
-                const page = link.getAttribute('data-page');
-                if (page === currentPage.replace('.html', '')) {
-                    link.classList.add('active');
-                }
-            });
-        });
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
-  *@
-
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -319,24 +49,42 @@
             align-items: center;
             margin-bottom: 30px;
             position: relative;
+            transition: width 0.3s, height 0.3s;
         }
 
             .icon img {
                 width: 50px;
-                height: auto;
+                transition: width 0.3s;
             }
+
+        .sidebar.collapsed .icon img {
+            width: 35px;
+        }
 
         .toggle-button {
             position: absolute;
-            top: 20px;
-            right: -25px;
+            top: 45px;
+            right: -10px;
+            width: 20px;
+            height: 20px;
             background-color: #1a73e8;
             border: none;
             color: white;
-            padding: 5px;
-            border-radius: 5px;
+            border-radius: 50%;
             cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s;
         }
+
+            .toggle-button i {
+                font-size: 10px;
+            }
+
+            .toggle-button:hover {
+                transform: scale(1.1);
+            }
 
         .sidebar a {
             padding: 12px 20px;
@@ -351,7 +99,8 @@
             gap: 8px;
         }
 
-            .sidebar a.active, .sidebar a:hover {
+            .sidebar a.active,
+            .sidebar a:hover {
                 background-color: #e0efff;
                 color: #1a73e8;
                 margin: 0px 10px 10px;
@@ -363,7 +112,8 @@
             border-radius: 0;
         }
 
-            .sidebar.collapsed a.active, .sidebar.collapsed a:hover {
+            .sidebar.collapsed a.active,
+            .sidebar.collapsed a:hover {
                 background-color: #e0efff;
                 color: #1a73e8;
                 padding: 12px 20px;
@@ -377,30 +127,30 @@
             display: none;
             padding-left: 20px;
             margin-top: 0;
-            position: absolute;
-            z-index: 1000;
         }
 
             .submenu.collapsed {
                 background-color: #ffffff;
                 border: 1px solid #e0e0e0;
-                padding: 0 !important;
+                padding: 0;
                 width: 200px;
+                position: absolute;
+                z-index: 1000;
             }
 
-            .submenu h4 {
-                margin: 0 0 10px;
-                font-size: 16px;
-                color: #1a73e8;
-                font-weight: bold;
-                text-align: center;
-                padding: 5px 0;
-                border-bottom: 2px solid #e0e0e0;
+                .submenu.collapsed h4 {
+                    margin: 0;
+                    font-size: 16px;
+                    color: #1a73e8;
+                    font-weight: bold;
+                    text-align: center;
+                    padding: 5px 0;
+                    border-bottom: 2px solid #e0e0e0;
+                    display: block;
+                }
+
+            .submenu.expanded h4 {
                 display: none;
-            }
-
-            .submenu.collapsed h4 {
-                display: block;
             }
 
             .submenu a {
@@ -462,7 +212,7 @@
         <a href="#"><i class="fas fa-pencil-alt"></i><span> Posts</span></a>
         <a href="#"><i class="fas fa-images"></i><span> Media</span></a>
         <a href="#"><i class="fas fa-file-alt"></i><span> Pages</span></a>
-        <a href="#" onclick="toggleSubmenu(event, 'comments-submenu', 'Comments')"><i class="fas fa-comments"></i><span> Comments <span class="badge bg-primary ms-2">1</span></span></a>
+        <a href="#" onclick="toggleSubmenu(event, 'comments-submenu')"><i class="fas fa-comments"></i><span> Comments <span class="badge bg-primary ms-2">1</span></span></a>
         <div class="submenu" id="comments-submenu">
             <h4>Comments</h4>
             <a href="#">Pending</a>
@@ -482,57 +232,56 @@
     </div>
 
     <script>
-        function toggleSubmenu(event, id, title) {
-            const submenu = document.getElementById(id);
-            submenu.classList.toggle('collapsed');
-            submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
-
-            const allSubmenus = document.querySelectorAll('.submenu');
-            allSubmenus.forEach(function (item) {
-                if (item.id !== id) {
-                    item.style.display = 'none';
-                    item.classList.remove('collapsed');
-                }
-            });
-
-            const sidebar = document.getElementById('sidebar');
-            if (sidebar.classList.contains('collapsed')) {
-                submenu.style.position = 'absolute';
-                submenu.style.left = (sidebar.offsetWidth) + 'px';
-                submenu.style.top = event.target.getBoundingClientRect().top + 'px';
-                submenu.classList.add('collapsed');
-            } else {
-                submenu.style.position = 'static';
-                submenu.classList.remove('collapsed');
-            }
-        }
-
         function toggleSidebar() {
             const sidebar = document.getElementById('sidebar');
             const content = document.getElementById('content');
+            const toggleButtonIcon = document.querySelector('.toggle-button i');
+            const submenus = document.querySelectorAll('.submenu');
 
             sidebar.classList.toggle('collapsed');
             content.classList.toggle('expanded');
 
-            const allSubmenus = document.querySelectorAll('.submenu');
-            allSubmenus.forEach(function (item) {
-                item.style.display = 'none';
-                item.classList.remove('collapsed');
+            if (sidebar.classList.contains('collapsed')) {
+                toggleButtonIcon.classList.remove('fa-angle-left');
+                toggleButtonIcon.classList.add('fa-angle-right');
+            } else {
+                toggleButtonIcon.classList.remove('fa-angle-right');
+                toggleButtonIcon.classList.add('fa-angle-left');
+            }
+
+            submenus.forEach(submenu => {
+                submenu.style.display = 'none';
             });
         }
 
-        document.addEventListener('DOMContentLoaded', function () {
-            const currentPage = window.location.pathname.split("/").pop();
-            const menuLinks = document.querySelectorAll('.sidebar a');
+        function toggleSubmenu(event, id) {
+            const submenu = document.getElementById(id);
+            const isOpen = submenu.style.display === 'block';
 
-            menuLinks.forEach(link => {
-                const page = link.getAttribute('data-page');
-                if (page === currentPage.replace('.html', '')) {
-                    link.classList.add('active');
+            const allSubmenus = document.querySelectorAll('.submenu');
+            allSubmenus.forEach(function (item) {
+                if (item !== submenu) {
+                    item.style.display = 'none';
                 }
             });
-        });
+
+            submenu.style.display = isOpen ? 'none' : 'block';
+
+            if (document.getElementById('sidebar').classList.contains('collapsed')) {
+                submenu.classList.add('collapsed');
+                submenu.classList.remove('expanded');
+                submenu.style.position = 'absolute';
+                submenu.style.left = '60px';
+                submenu.style.top = event.target.offsetTop + 'px';
+            } else {
+                submenu.classList.remove('collapsed');
+                submenu.classList.add('expanded');
+                submenu.style.position = 'relative';
+                submenu.style.left = '0';
+                submenu.style.top = '0';
+            }
+        }
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>
