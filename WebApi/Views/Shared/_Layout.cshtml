@@ -270,7 +270,6 @@
             .header .header-right {
                 display: flex;
                 align-items: center;
-                gap: 20px;
             }
 
             .header .user-info {
@@ -284,9 +283,25 @@
             .header .user-name {
                 font-size: 14px;
                 color: var(--text-primary);
+                display: flex;
+                align-items: center;
+                cursor: pointer;
             }
 
+        .status-indicator {
+            width: 6px;
+            height: 6px;
+            background-color: #28a745;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
 
+        .user-name i {
+            font-size: 10px;
+            color: var(--text-secundary);
+            transition: transform 0.3s;
+            margin-left:6px;
+        }
 
 
         .dropdown-menu {
@@ -382,8 +397,9 @@
             <h1 class="header-title">Dashboard</h1>
         </div>
         <div class="header-right">
+            <div class="status-indicator"></div>
             <div class="user-info">
-                <span class="user-name" onclick="toggleDropdown(event)">Username</span>
+                <span class="user-name" onclick="toggleDropdown(event)">Username <i class="fas fa-chevron-down" id="dropdown-icon"></i></span>
                 <div class="dropdown-menu" id="user-dropdown">
                     <a href="#" class="logout-btn"><i class="fas fa-right-from-bracket"></i> Logout</a>
                 </div>
@@ -461,14 +477,23 @@
 
         function toggleDropdown(event) {
             const dropdown = document.getElementById('user-dropdown');
+            const dropdownIcon = document.getElementById('dropdown-icon');
             dropdown.classList.toggle('show');
 
+            if (dropdown.classList.contains('show')) {
+                dropdownIcon.classList.replace('fa-chevron-down', 'fa-times');
+            } else {
+                dropdownIcon.classList.replace('fa-times', 'fa-chevron-down');
+            }
+
             window.onclick = function (event) {
-                if (!event.target.matches('.user-name')) {
+                if (!event.target.closest('.user-name')) {
                     dropdown.classList.remove('show');
+                    dropdownIcon.classList.replace('fa-times', 'fa-chevron-down');
                 }
             }
         }
+
 
     </script>
 
