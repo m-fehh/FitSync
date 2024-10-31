@@ -11,12 +11,12 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=MuseoModerno:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    
+
     <link rel="stylesheet" href="theme/theme.css">
 
     <style>
         body {
-            font-family: var(--font-primary); 
+            font-family: var(--font-primary);
             background-color: var(--background-color);
             color: var(--text-primary);
         }
@@ -66,7 +66,7 @@
 
         .sidebar.collapsed .icon img {
             width: 35px;
-            margin-bottom: 70px;
+            margin-bottom: 25px;
         }
 
         .sidebar a {
@@ -83,7 +83,12 @@
         }
 
             .sidebar a i {
-                font-size: 18px; 
+                font-size: 16px;
+                background-color: var(--bs-gray-200);
+                border-radius: 12px;
+                padding: 8px;
+                transition: background-color 0.3s;
+                border: 1px solid var(--border);
             }
 
             .sidebar a.active {
@@ -101,6 +106,7 @@
         .sidebar.collapsed a {
             margin: 7px 0;
             border-radius: 0;
+            padding: 12px;
         }
 
             .sidebar.collapsed a.active {
@@ -111,7 +117,7 @@
             .sidebar.collapsed a:hover {
                 background-color: var(--secondary-color);
                 color: var(--main-color);
-                padding: 12px 20px;
+                padding: 12px;
             }
 
             .sidebar.collapsed a span {
@@ -165,7 +171,7 @@
         .logout-btn {
             margin: 20px;
             background-color: var(--main-color);
-            color: white !important;
+            color: #FFF !important;
             font-weight: 700;
             font-size: 16px;
             padding: 10px;
@@ -174,9 +180,19 @@
             text-decoration: none;
             margin-top: auto;
             position: absolute;
-            bottom: 20px;
+            bottom: 0;
             left: 0;
             right: 0;
+            margin: 0 !important;
+            border-radius: 0 !important;
+        }
+
+            .logout-btn i {
+                color: var(--main-color);
+            }
+
+        .sidebar:not(.collapsed) .logout-btn {
+            justify-content: center;
         }
 
         .content {
@@ -189,9 +205,11 @@
                 margin-left: 60px;
             }
 
+
+        /* FOOTER */
         .footer {
             position: fixed;
-            bottom: 5px;
+            bottom: 10px;
             left: 270px;
             border-radius: 12px;
             right: 20px;
@@ -207,10 +225,10 @@
             padding: 0 8px;
         }
 
-        .footer p {
+            .footer p {
                 margin: 0;
                 padding: 8px;
-        }
+            }
 
         .content.expanded + .footer {
             left: 80px;
@@ -223,15 +241,10 @@
             margin-bottom: 20px;
         }
 
-
-
-
-
-
-        /* Header */
+        /* HEADER */
         .header {
             position: fixed;
-            top: 10px; /* Aumenta o espaço do topo */
+            top: 10px;
             left: 270px;
             right: 20px;
             height: 50px;
@@ -240,7 +253,7 @@
             align-items: center;
             justify-content: space-between;
             padding: 0 20px;
-            border-radius: 12px; /* Borda arredondada semelhante ao footer */
+            border-radius: 12px;
             color: var(--text-secundary);
             border: 1px solid var(--border);
             transition: left 0.3s;
@@ -248,7 +261,7 @@
         }
 
             .header.collapsed {
-                left: 80px; /* Posiciona o header quando a sidebar está colapsada */
+                left: 80px;
             }
 
 
@@ -279,47 +292,47 @@
                 gap: 20px;
             }
 
-/*             .header .search-bar {
-                padding: 5px 10px;
-                border: 1px solid var(--border);
-                border-radius: 4px;
-                font-size: 14px;
-            }
+            /*             .header .search-bar {
+                                padding: 5px 10px;
+                                border: 1px solid var(--border);
+                                border-radius: 4px;
+                                font-size: 14px;
+                            }
 
-            .header .notification-btn {
-                background: none;
-                border: none;
-                color: var(--text-primary);
-                font-size: 18px;
-                cursor: pointer;
-                position: relative;
-            }
- */
+                            .header .notification-btn {
+                                background: none;
+                                border: none;
+                                color: var(--text-primary);
+                                font-size: 18px;
+                                cursor: pointer;
+                                position: relative;
+                            }
+                 */
             .header .user-info {
                 display: flex;
                 align-items: center;
                 gap: 8px;
             }
 
-/*             .header .user-avatar {
-                width: 30px;
-                height: 30px;
-                border-radius: 50%;
-            } */
+            /*             .header .user-avatar {
+                                width: 30px;
+                                height: 30px;
+                                border-radius: 50%;
+                            } */
 
             .header .user-name {
                 font-size: 14px;
                 color: var(--text-primary);
             }
 
+
         .content {
-            margin-top: 80px; /* Ajusta o margin-top para evitar sobreposição do header */
+            margin-top: 80px; 
         }
 
             .content.expanded + .header {
                 left: 60px;
             }
-
 
     </style>
 </head>
@@ -357,7 +370,7 @@
             <h1 class="header-title">Dashboard</h1>
         </div>
         <div class="header-right">
-@*             <input type="text" class="search-bar" placeholder="Search...">
+            @*             <input type="text" class="search-bar" placeholder="Search...">
             <button class="notification-btn"><i class="fas fa-bell"></i></button> *@
             <div class="user-info">
                 @* <img src="images/user-avatar.jpg" alt="User Avatar" class="user-avatar"> *@
@@ -371,10 +384,10 @@
         @RenderBody()
     </div>
 
-    <footer class="footer">
-        <span>© 2024 Your Company</span>
+    <div class="footer">
+        <p>&copy; 2024 Cummo. All rights reserved.</p>
         <p>Version 1.0.0</p>
-    </footer>
+    </div>
 
     <script>
         function toggleSidebar() {
