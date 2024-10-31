@@ -1,0 +1,65 @@
+﻿:root {
+    /* FUNDO */
+    --background-color: #f5f7fa;
+    /* TEXTOS*/
+    --text-primary: #333;
+    --text-secundary: #5D7285;
+    /* CORES PRINCIPAIS */
+    --main-color: #3e65ff;
+    --secondary-color: #E9F5FE;
+    /* SIDEBAR */
+    --sidebar-background: #ffffff;
+    /* BORDA */
+    --border: #e0e0e0;
+    /* FONTES */
+    --font-primary: 'MuseoModerno', sans-serif;
+    --font-secondary: 'Roboto', sans-serif;
+    --font-size-small: 12px;
+    --font-size-medium: 16px;
+    --font-size-large: 24px;
+    --font-weight-normal: 400;
+    --font-weight-bold: 600;
+    --font-weight-bolder: 700;
+    /* ESPAÇAMENTO */
+    --padding-small: 5px;
+    --padding-medium: 10px;
+    --padding-large: 20px;
+    --margin-small: 5px;
+    --margin-medium: 10px;
+    --margin-large: 20px;
+    /* LARGURA E ALTURA */
+    --width-small: 50px;
+    --width-medium: 150px;
+    --width-large: 250px;
+    --height-small: 20px;
+    --height-medium: 50px;
+    --height-large: 100px;
+    /* BORDAS */
+    --border-radius-small: 2px;
+    --border-radius-medium: 5px;
+    --border-radius-large: 10px;
+    /* SOMBRA */
+    --box-shadow-small: 0 1px 3px rgba(0, 0, 0, 0.1);
+    --box-shadow-medium: 0 2px 4px rgba(0, 0, 0, 0.2);
+    --box-shadow-large: 0 4px 8px rgba(0, 0, 0, 0.3);
+    /* TRANSIÇÕES */
+    --transition-speed: 0.3s;
+    --transition-ease: ease-in-out;
+    /* OPACIDADE */
+    --opacity-100: 1;
+    --opacity-80: 0.8;
+    --opacity-60: 0.6;
+    --opacity-40: 0.4;
+    --opacity-20: 0.2;
+    --opacity-0: 0;
+}
+
+/* Tema Escuro */
+/*[data-theme='dark'] {
+    --background-color: #333;
+    --text-color: #f5f7fa;
+    --sidebar-background: #222;
+    --sidebar-border: #444;
+    --link-color: #0C7FDA;
+    --link-hover-background: #555;
+}*/

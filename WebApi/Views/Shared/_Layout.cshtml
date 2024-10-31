@@ -11,14 +11,14 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=MuseoModerno:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="theme/theme.css">
 
     <style>
         body {
-            /*             font-family: 'Poppins', sans-serif;
-                    font-family: Arial, sans-serif; */
-            font-family: 'MuseoModerno', sans-serif;
-            background-color: #f5f7fa;
-            color: #333;
+            font-family: var(--font-primary); 
+            background-color: var(--background-color);
+            color: var(--text-primary);
         }
 
         .sidebar {
@@ -27,8 +27,8 @@
             position: fixed;
             top: 0;
             left: 0;
-            background-color: #ffffff;
-            border-right: 1px solid #e0e0e0;
+            background-color: var(--sidebar-background);
+            border-right: 1px solid var(--border);
             display: flex;
             flex-direction: column;
             padding-top: 20px;
@@ -41,9 +41,8 @@
 
             .sidebar h3 {
                 text-align: start;
-                color: #797979;
+                color: var(--text-secundary);
                 font-size: 13px;
-                font-weight: 700;
                 padding: 8px 15px;
             }
 
@@ -75,7 +74,7 @@
             right: -10px;
             width: 20px;
             height: 20px;
-            background-color: #0C7FDA;
+            background-color: var(--main-color);
             border: none;
             color: white;
             border-radius: 50%;
@@ -87,7 +86,7 @@
         }
 
             .toggle-button i {
-                font-size: 10px;
+                font-size: 12px;
             }
 
             .toggle-button:hover {
@@ -96,8 +95,8 @@
 
         .sidebar a {
             padding: 12px 20px;
-            font-size: 16px;
-            color: #333;
+            font-size: 14px;
+            color: var(--text-primary);
             display: flex;
             align-items: center;
             text-decoration: none;
@@ -107,14 +106,18 @@
             gap: 8px;
         }
 
+            .sidebar a i {
+                font-size: 18px; 
+            }
+
             .sidebar a.active {
                 font-weight: 700;
             }
 
             .sidebar a.active,
             .sidebar a:hover {
-                background-color: #E9F5FE;
-                color: #0C7FDA;
+                background-color: var(--secondary-color);
+                color: var(--main-color);
                 margin: 0px 10px 10px;
                 padding: 12px 10px;
             }
@@ -130,8 +133,8 @@
 
             .sidebar.collapsed a.active,
             .sidebar.collapsed a:hover {
-                background-color: #E9F5FE;
-                color: #0C7FDA;
+                background-color: var(--secondary-color);
+                color: var(--main-color);
                 padding: 12px 20px;
             }
 
@@ -146,8 +149,8 @@
         }
 
             .submenu.collapsed {
-                background-color: #ffffff;
-                border: 1px solid #e0e0e0;
+                background-color: var(--sidebar-background);
+                border: 1px solid var(--border);
                 padding: 0;
                 width: 200px;
                 position: absolute;
@@ -157,11 +160,11 @@
                 .submenu.collapsed h4 {
                     margin: 0;
                     font-size: 16px;
-                    color: #0C7FDA;
+                    color: var(--main-color);
                     font-weight: bold;
                     text-align: center;
                     padding: 5px 0;
-                    border-bottom: 2px solid #e0e0e0;
+                    border-bottom: 2px solid var(--border);
                     display: block;
                 }
 
@@ -170,22 +173,22 @@
             }
 
             .submenu a {
-                font-size: 14px;
+                font-size: 12px;
                 padding: 10px 15px;
                 display: block;
-                color: #333;
+                color: var(--text-primary);
                 text-decoration: none;
             }
 
                 .submenu a:hover {
-                    background-color: #E9F5FE;
-                    color: #0C7FDA;
+                    background-color: var(--secondary-color);
+                    color: var(--main-color);
                     padding: 10px 15px;
                 }
 
         .logout-btn {
             margin: 20px;
-            background-color: #0C7FDA;
+            background-color: var(--main-color);
             color: white !important;
             font-weight: 700;
             font-size: 16px;
@@ -213,7 +216,7 @@
         .dashboard-header {
             font-size: 24px;
             font-weight: bold;
-            color: #333;
+            color: var(--text-primary);
             margin-bottom: 20px;
         }
     </style>
@@ -227,19 +230,19 @@
         </div>
 
         <h3>Dashboard</h3>
-        <a href="#" class="active"><i class="fas fa-tachometer-alt"></i><span> Dashboard</span></a>
-        <a href="#"><i class="fas fa-pencil-alt"></i><span> Posts</span></a>
-        <a href="#"><i class="fas fa-images"></i><span> Media</span></a>
-        <a href="#"><i class="fas fa-file-alt"></i><span> Pages</span></a>
-        <a href="#" onclick="toggleSubmenu(event, 'comments-submenu')"><i class="fas fa-comments"></i><span> Comments <span class="badge bg-primary ms-2">1</span></span></a>
+        <a href="#" class="active"><i class="fa-solid fa-chart-line"></i><span> Dashboard</span></a>
+        <a href="#"><i class="fa-solid fa-square-pen"></i><span> Posts</span></a>
+        <a href="#"><i class="fa-solid fa-image"></i><span> Media</span></a>
+        <a href="#"><i class="fa-solid fa-table-columns"></i><span> Pages</span></a>
+        <a href="#" onclick="toggleSubmenu(event, 'comments-submenu')"><i class="fa-solid fa-message"></i><span> Comments <span class="badge bg-primary ms-2">1</span></span></a>
         <div class="submenu" id="comments-submenu">
             <h4>Comments</h4>
             <a href="#">Pending</a>
             <a href="#">Approved</a>
         </div>
         <a href="#"><i class="fas fa-paint-brush"></i><span> Appearance</span></a>
-        <a href="#"><i class="fas fa-plug"></i><span> Plugins</span></a>
-        <a href="#"><i class="fa-solid fa-user"></i><span> Users</span></a>
+        <a href="#"><i class="fa-solid fa-plug"></i><span> Plugins</span></a>
+        <a href="#"><i class="fa-solid fa-image-portrait"></i><span> Users</span></a>
         <a href="#"><i class="fas fa-cog"></i><span> Settings</span></a>
         <a href="#"><i class="fas fa-tools"></i><span> Tools</span></a>
         <a href="#" class="logout-btn"><i class="fas fa-right-from-bracket"></i><span> Logout</span></a>
