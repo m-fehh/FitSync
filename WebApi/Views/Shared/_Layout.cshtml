@@ -300,22 +300,22 @@
             font-size: 10px;
             color: var(--text-secundary);
             transition: transform 0.3s;
-            margin-left:6px;
+            margin-left: 6px;
         }
 
 
         .dropdown-menu {
             position: absolute;
             top: 100%;
-            right: 0;
+            right: -7px;
             display: none;
             z-index: 1000;
-            background-color: var(--background-color);
+            background-color: var(--sidebar-background);
             border: 1px solid var(--border);
-            border-radius: 5px;
+            border-radius: 12px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             padding: 10px;
-            min-width: 150px;
+            min-width: 200px;
         }
 
             .dropdown-menu.show {
@@ -347,6 +347,10 @@
                 .dropdown-menu a:hover {
                     background-color: var(--secondary-color);
                     color: var(--main-color);
+                }
+
+                .dropdown-menu a:hover i {
+                    background-color: var(--bs-gray-100);
                 }
 
 
@@ -386,7 +390,6 @@
         <a href="#"><i class="fa-solid fa-image-portrait"></i><span> Users</span></a>
         <a href="#"><i class="fas fa-cog"></i><span> Settings</span></a>
         <a href="#"><i class="fas fa-tools"></i><span> Tools</span></a>
-        @* <a href="#" class="logout-btn"><i class="fas fa-right-from-bracket"></i><span> Logout</span></a> *@
     </div>
 
     <header class="header">
@@ -421,20 +424,19 @@
         function toggleSidebar() {
             const sidebar = document.getElementById('sidebar');
             const content = document.getElementById('content');
-            const header = document.querySelector('.header'); // Seleciona o header
+            const header = document.querySelector('.header'); 
             const toggleButtonIcon = document.querySelector('.toggle-button i');
             const submenus = document.querySelectorAll('.submenu');
 
-            // Fecha todos os submenus
             submenus.forEach(submenu => {
                 submenu.style.display = 'none';
-                submenu.classList.remove('expanded'); // Remove a classe expanded
-                submenu.classList.add('collapsed'); // Adiciona a classe collapsed
+                submenu.classList.remove('expanded'); 
+                submenu.classList.add('collapsed'); 
             });
 
             sidebar.classList.toggle('collapsed');
             content.classList.toggle('expanded');
-            header.classList.toggle('collapsed'); // Adiciona/remova a classe collapsed no header
+            header.classList.toggle('collapsed'); 
 
             if (sidebar.classList.contains('collapsed')) {
                 toggleButtonIcon.classList.remove('fa-angle-left');
@@ -480,22 +482,14 @@
             const dropdownIcon = document.getElementById('dropdown-icon');
             dropdown.classList.toggle('show');
 
-            if (dropdown.classList.contains('show')) {
-                dropdownIcon.classList.replace('fa-chevron-down', 'fa-times');
-            } else {
-                dropdownIcon.classList.replace('fa-times', 'fa-chevron-down');
-            }
-
             window.onclick = function (event) {
                 if (!event.target.closest('.user-name')) {
                     dropdown.classList.remove('show');
-                    dropdownIcon.classList.replace('fa-times', 'fa-chevron-down');
+                    dropdownIcon.style.opacity = '1';
                 }
             }
         }
 
-
     </script>
-
 </body>
 </html>
