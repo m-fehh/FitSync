@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿
+@using Infrastructure
+
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -420,7 +424,8 @@
         </div>
 
         <h3>Dashboard</h3>
-        <a href="#" class="active"><i class="fa-solid fa-chart-line"></i><span> Dashboard</span></a>
+        <a href="#" class="active"><i class="fa-solid fa-chart-line"></i><span> Dashboard</span></a> 
+        @* <a href="#" class="active"><i class="fa-solid fa-chart-line"></i><span> @Engine.Translate("he")</span></a> *@
         <a href="#"><i class="fa-solid fa-square-pen"></i><span> Posts</span></a>
         <a href="#"><i class="fa-solid fa-image"></i><span> Media</span></a>
         <a href="#"><i class="fa-solid fa-table-columns"></i><span> Pages</span></a>
