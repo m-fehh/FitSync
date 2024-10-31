@@ -168,7 +168,6 @@
                 .submenu a:hover {
                     background-color: var(--secondary-color);
                     color: var(--main-color);
-                    
                 }
 
         .sidebar:not(.collapsed) .logout-btn {
@@ -176,17 +175,24 @@
         }
 
         .content {
-            margin-left: 250px;
-            padding: 0px 20px 0px 30px;
-            height: calc(100vh - 140px);
+            margin-left: 270px;
+            padding: 0px 15px 0px 0px;
+            height: calc(100vh - 145px);
             overflow-y: auto;
             transition: margin-left 0.3s;
         }
 
             .content.expanded {
-                margin-left: 80px;
+                margin-left: 70px;
                 padding-left: 10px !important;
             }
+
+        .page {
+            background-color: var(--sidebar-background);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 12px;
+        }
 
 
         /* FOOTER */
@@ -351,9 +357,9 @@
                     color: var(--main-color);
                 }
 
-                .dropdown-menu a:hover i {
-                    background-color: var(--bs-gray-100);
-                }
+                    .dropdown-menu a:hover i {
+                        background-color: var(--bs-gray-100);
+                    }
 
 
 
@@ -371,28 +377,27 @@
 
         /* Estilizando a barra de rolagem */
         ::-webkit-scrollbar {
-            width: 5px; 
-            height: 10px; 
+            width: 5px;
+            height: 10px;
         }
 
         ::-webkit-scrollbar-track {
-            background: var(--bs-gray-200); 
-            border-radius: 10px; 
+            background: var(--bs-gray-200);
+            border-radius: 10px;
         }
 
         ::-webkit-scrollbar-thumb {
-            background: var(--main-color); 
-            border-radius: 10px; 
+            background: var(--main-color);
+            border-radius: 10px;
         }
 
             ::-webkit-scrollbar-thumb:hover {
-                background: var(--secondary-color); 
+                background: var(--secondary-color);
             }
 
             ::-webkit-scrollbar-thumb:active {
-                background: var(--main-color); 
+                background: var(--main-color);
             }
-
 
     </style>
 </head>
@@ -440,7 +445,9 @@
     </header>
 
     <div class="content" id="content">
-        @RenderBody()
+        <div class="page">
+            @RenderBody()
+        </div>
     </div>
 
     <div class="footer">
@@ -452,19 +459,19 @@
         function toggleSidebar() {
             const sidebar = document.getElementById('sidebar');
             const content = document.getElementById('content');
-            const header = document.querySelector('.header'); 
+            const header = document.querySelector('.header');
             const toggleButtonIcon = document.querySelector('.toggle-button i');
             const submenus = document.querySelectorAll('.submenu');
 
             submenus.forEach(submenu => {
                 submenu.style.display = 'none';
-                submenu.classList.remove('expanded'); 
-                submenu.classList.add('collapsed'); 
+                submenu.classList.remove('expanded');
+                submenu.classList.add('collapsed');
             });
 
             sidebar.classList.toggle('collapsed');
             content.classList.toggle('expanded');
-            header.classList.toggle('collapsed'); 
+            header.classList.toggle('collapsed');
 
             if (sidebar.classList.contains('collapsed')) {
                 toggleButtonIcon.classList.remove('fa-angle-left');
