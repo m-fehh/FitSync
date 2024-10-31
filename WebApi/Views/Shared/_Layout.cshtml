@@ -177,12 +177,15 @@
 
         .content {
             margin-left: 250px;
-            padding: 20px;
+            padding: 0px 20px 0px 30px;
+            height: calc(100vh - 140px);
+            overflow-y: auto;
             transition: margin-left 0.3s;
         }
 
             .content.expanded {
-                margin-left: 60px;
+                margin-left: 80px;
+                padding-left: 10px !important;
             }
 
 
@@ -364,6 +367,33 @@
                 left: 60px;
             }
 
+
+
+        /* Estilizando a barra de rolagem */
+        ::-webkit-scrollbar {
+            width: 5px; 
+            height: 10px; 
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bs-gray-200); 
+            border-radius: 10px; 
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--main-color); 
+            border-radius: 10px; 
+        }
+
+            ::-webkit-scrollbar-thumb:hover {
+                background: var(--secondary-color); 
+            }
+
+            ::-webkit-scrollbar-thumb:active {
+                background: var(--main-color); 
+            }
+
+
     </style>
 </head>
 <body>
@@ -410,7 +440,6 @@
     </header>
 
     <div class="content" id="content">
-        <h2 class="dashboard-header">Dashboard</h2>
         @RenderBody()
     </div>
 
