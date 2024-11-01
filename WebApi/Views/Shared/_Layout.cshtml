@@ -1,5 +1,5 @@
-﻿
-@using Infrastructure
+﻿@using Infrastructure
+@using Infrastructure.Helpers
 
 
 <!DOCTYPE html>
@@ -42,8 +42,8 @@
 
             /* Estilizando a barra de rolagem para ficar invisível */
             .sidebar::-webkit-scrollbar {
-                width: 0; 
-                background: transparent; 
+                width: 0;
+                background: transparent;
             }
 
             .sidebar::-webkit-scrollbar-thumb {
@@ -153,7 +153,7 @@
                 border: 1px solid var(--border);
                 padding: 0;
                 width: 200px;
-                position: absolute;
+                position: fixed;
                 z-index: 1000;
             }
 
@@ -423,24 +423,38 @@
             <img src="images/logo-light.svg" alt="Logo">
         </div>
 
-        <h3>Dashboard</h3>
-        <a href="#" class="active"><i class="fa-solid fa-chart-line"></i><span> Dashboard</span></a> 
-        @* <a href="#" class="active"><i class="fa-solid fa-chart-line"></i><span> @Engine.Translate("he")</span></a> *@
-        <a href="#"><i class="fa-solid fa-square-pen"></i><span> Posts</span></a>
-        <a href="#"><i class="fa-solid fa-image"></i><span> Media</span></a>
-        <a href="#"><i class="fa-solid fa-table-columns"></i><span> Pages</span></a>
-        <a href="#" onclick="toggleSubmenu(event, 'comments-submenu')"><i class="fa-solid fa-message"></i><span> Comments</span></a>
-        <div class="submenu" id="comments-submenu">
-            <h4>Comments</h4>
-            <a href="#">Pending</a>
-            <a href="#">Approved</a>
-        </div>
-        <a href="#"><i class="fas fa-paint-brush"></i><span> Appearance</span></a>
-        <a href="#"><i class="fa-solid fa-plug"></i><span> Plugins</span></a>
-        <a href="#"><i class="fa-solid fa-image-portrait"></i><span> Users</span></a>
-        <a href="#"><i class="fas fa-cog"></i><span> Settings</span></a>
-        <a href="#"><i class="fas fa-tools"></i><span> Tools</span></a>
+        @foreach (var menuSection in MenuHelper.GetMenuSections())
+        {
+            <h3>@menuSection.Title</h3>
+
+            @foreach (var item in menuSection.Items)
+            {
+                if (item.SubItems.Count > 0)
+                {
+                    <a href="#" onclick="toggleSubmenu(event, '@item.Title.Replace(" ", "-")-submenu', this)">
+                        <i class="@item.Icon"></i>
+                        <span>@item.Title</span>
+                    </a>
+                    <div class="submenu" id="@item.Title.Replace(" ", "-")-submenu">
+                        <h4>@item.Title</h4> 
+                        @foreach (var subItem in item.SubItems)
+                        {
+                            <a href="@subItem.Url">@subItem.Title</a>
+                        }
+                    </div>
+                }
+                else
+                {
+                    <a href="@item.Url">
+                        <i class="@item.Icon"></i>
+                        <span>@item.Title</span>
+                    </a>
+                }
+            }
+        }
     </div>
+
+
 
     <header class="header">
         <div class="header-left">
@@ -516,7 +530,7 @@
             if (document.getElementById('sidebar').classList.contains('collapsed')) {
                 submenu.classList.add('collapsed');
                 submenu.classList.remove('expanded');
-                submenu.style.position = 'absolute';
+                submenu.style.position = 'fixed';
                 submenu.style.left = '60px';
                 submenu.style.top = event.target.offsetTop + 'px';
             } else {
