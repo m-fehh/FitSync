@@ -1,6 +1,5 @@
 ﻿using System.Globalization;
 using System.Resources;
-using System.Threading.Tasks;
 
 namespace Infrastructure.Helpers
 {
@@ -10,7 +9,8 @@ namespace Infrastructure.Helpers
 
         public static Task<string> GetStringAsync(string key)
         {
-            return Task.FromResult(resourceManager.GetString(key, CultureInfo.CurrentCulture));
+            var result = resourceManager.GetString(key, CultureInfo.CurrentCulture);
+            return Task.FromResult(result ?? key);
         }
     }
 }
