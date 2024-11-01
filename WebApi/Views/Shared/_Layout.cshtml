@@ -493,8 +493,11 @@
         <p>Version 1.0.0</p>
     </div>
 
-    <!-- Toasts -->
+    @* Toasts *@
     @Html.Partial("~/Views/Shared/_ToastDefault.cshtml")
+
+    @* Loader *@
+    @Html.Partial("~/Views/Shared/_LoaderDefault.cshtml")
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
@@ -522,9 +525,13 @@
         }
 
         document.querySelector('.logout-btn').addEventListener('click', function () {
-            // Aqui você pode adicionar a lógica de logout se necessário
-            // Exibe o toast de sucesso
-            showToast('toast-success', 'Você foi desconectado com sucesso!');
+            showLoading();
+
+            // Simulando um delay para demonstração
+            setTimeout(() => {
+                hideLoading();
+                showToast('toast-success', 'Você foi desconectado com sucesso!');
+            }, 2000);
         });
 
         function toggleSidebar() {

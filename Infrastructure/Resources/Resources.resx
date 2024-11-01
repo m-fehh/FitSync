@@ -120,6 +120,9 @@
   <data name="error" xml:space="preserve">
     <value>Erro</value>
   </data>
+  <data name="loading" xml:space="preserve">
+    <value>Carregando...</value>
+  </data>
   <data name="success" xml:space="preserve">
     <value>Sucesso</value>
   </data>

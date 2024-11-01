@@ -70,6 +70,15 @@ namespace Infrastructure.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Carregando....
+        /// </summary>
+        internal static string loading {
+            get {
+                return ResourceManager.GetString("loading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sucesso.
         /// </summary>
         internal static string success {
