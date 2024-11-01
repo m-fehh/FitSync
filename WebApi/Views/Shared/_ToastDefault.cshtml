@@ -1,12 +1,183 @@
 ﻿@using Infrastructure
-@{
-    Layout = null;
-}
-
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
-<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
-
 <style>
+    :root {
+        --success-color: #28a745;
+        --warning-color: #ffc107;
+        --error-color: #dc3545;
+        --background-light: #f8f9fa;
+        --text-color-dark: #212529;
+        --border-color-light: #dee2e6;
+    }
+
+    .toast-container {
+        position: fixed;
+        bottom: 60px;
+        right: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .toast {
+        font-family: var(--font-secondary);
+        display: flex;
+        align-items: center;
+        width: 400px;
+        padding: 16px;
+        border-radius: 8px;
+        color: var(--text-color-dark);
+        background-color: var(--background-light);
+        border: 1px solid var(--border-color-light);
+        transition: opacity 0.5s ease, transform 0.5s ease;
+        opacity: 0;
+        transform: translateY(10px);
+        position: relative;
+        overflow: hidden;
+        gap: 16px;
+    }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .toast.success {
+            border-left: 5px solid var(--success-color);
+        }
+
+        .toast.warning {
+            border-left: 5px solid var(--warning-color);
+        }
+
+        .toast.error {
+            border-left: 5px solid var(--error-color);
+        }
+
+        .toast.success .progress-bar {
+            background-color: rgba(40, 167, 69, 0.4);
+        }
+
+        .toast.warning .progress-bar {
+            background-color: rgba(255, 193, 7, 0.4); 
+        }
+
+        .toast.error .progress-bar {
+            background-color: rgba(220, 53, 69, 0.4);
+        }
+
+        .toast.success .toast-icon {
+            color: var(--success-color);
+        }
+
+        .toast.warning .toast-icon {
+            color: var(--warning-color);
+        }
+
+        .toast.error .toast-icon {
+            color: var(--error-color);
+        }
+
+
+    .toast-icon {
+        font-size: 28px;
+    }
+
+    .toast-title {
+        font-weight: bold;
+        font-size: 16px;
+        color: var(--text-primary);
+        margin: 0;
+        margin-bottom: 2px;
+    }
+
+    .toast-message {
+        font-size: 14px;
+        color: var(--text-secundary);
+        margin: 0;
+        font-weight: lighter;
+    }
+
+    .toast .btn-close {
+        color: var(--text-color-dark);
+        opacity: 0.8;
+    }
+
+    /* Barra de carregamento */
+    .progress-bar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        height: 4px;
+        background-color: currentColor;
+        width: 0;
+        transition: width 5s linear;
+    }
+</style>
+
+<div class="toast-container">
+    <div id="toast-success" class="toast success align-items-center fade" role="alert" aria-live="assertive" aria-atomic="true">
+        <i class="toast-icon fa-solid fa-circle-check"></i>
+        <div>
+            <h5 class="toast-title">@Engine.Translate("success")!</h5>
+            <p class="toast-message"></p>
+        </div>
+        <button type="button" class="btn-close ms-auto" onclick="hideToast('toast-success')" aria-label="Close"></button>
+        <div class="progress-bar"></div>
+    </div>
+
+    <div id="toast-warning" class="toast warning align-items-center fade" role="alert" aria-live="assertive" aria-atomic="true">
+        <i class="toast-icon fa-solid fa-circle-exclamation"></i>
+        <div>
+            <h5 class="toast-title">@Engine.Translate("warning")!</h5>
+            <p class="toast-message"></p>
+        </div>
+        <button type="button" class="btn-close ms-auto" onclick="hideToast('toast-warning')" aria-label="Close"></button>
+        <div class="progress-bar"></div>
+    </div>
+
+    <div id="toast-error" class="toast error align-items-center fade" role="alert" aria-live="assertive" aria-atomic="true">
+        <i class="toast-icon fa-solid fa-circle-xmark"></i>
+        <div>
+            <h5 class="toast-title">@Engine.Translate("error")!</h5>
+            <p class="toast-message"></p>
+        </div>
+        <button type="button" class="btn-close ms-auto" onclick="hideToast('toast-error')" aria-label="Close"></button>
+        <div class="progress-bar"></div>
+    </div>
+</div>
+
+<script>
+    function showToast(id, message) {
+        const toast = document.getElementById(id);
+        if (toast) {
+            const messageElement = toast.querySelector('.toast-message');
+            messageElement.textContent = message;
+
+            // Define a largura da barra de progresso para 100% ao exibir o toast
+            const progressBar = toast.querySelector('.progress-bar');
+            progressBar.style.width = '0%'; // Inicia vazia
+            setTimeout(() => progressBar.style.width = '100%', 10);
+
+            toast.classList.add('show');
+
+            setTimeout(() => {
+                hideToast(id);
+            }, 5000);
+        }
+    }
+
+    function hideToast(id) {
+        const toast = document.getElementById(id);
+        if (toast) {
+            toast.classList.remove('show');
+            const progressBar = toast.querySelector('.progress-bar');
+            progressBar.style.width = '0%'; // Reseta a barra de progresso
+        }
+    }
+</script>
+
+
+@* <style>
     .toast {
         width: 450px !important;
         margin: auto;
@@ -108,9 +279,9 @@
             </div>
         </div>
     </div>
-</div>
+</div> *@
 
-<script>
+@* <script>
     function showToast(id, message) {
         const toast = document.getElementById(id);
         if (toast) {
@@ -132,3 +303,6 @@
         }
     }
 </script>
+ *@
+
+
