@@ -120,8 +120,14 @@
   <data name="error" xml:space="preserve">
     <value>Erro</value>
   </data>
+  <data name="home" xml:space="preserve">
+    <value>Início</value>
+  </data>
   <data name="loading" xml:space="preserve">
     <value>Carregando...</value>
+  </data>
+  <data name="quickMenu" xml:space="preserve">
+    <value>Menu Rápido</value>
   </data>
   <data name="success" xml:space="preserve">
     <value>Sucesso</value>

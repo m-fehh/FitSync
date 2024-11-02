@@ -70,11 +70,29 @@ namespace Infrastructure.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Início.
+        /// </summary>
+        internal static string home {
+            get {
+                return ResourceManager.GetString("home", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Carregando....
         /// </summary>
         internal static string loading {
             get {
                 return ResourceManager.GetString("loading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Menu Rápido.
+        /// </summary>
+        internal static string quickMenu {
+            get {
+                return ResourceManager.GetString("quickMenu", resourceCulture);
             }
         }
         

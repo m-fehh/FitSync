@@ -8,10 +8,10 @@
             {
                 new MenuSection
                 {
-                    Title = "Dashboard",
+                    Title = Engine.Translate("quickMenu"),
                     Items = new List<MenuItem>
                     {
-                        new MenuItem { Title = "Home", Icon = "fa-solid fa-chart-line", Url = "#" },
+                        new MenuItem { Title = Engine.Translate("home"), Icon = "fa-solid fa-house-chimney", Url = "/home" },
                     }
                 },
                 new MenuSection
